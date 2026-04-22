@@ -1,3 +1,7 @@
+# Memory
+
+scrollback-limit = 1000
+
 # Colors
 
 theme = everforest-dark-hard
