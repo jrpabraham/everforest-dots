@@ -9,6 +9,10 @@ function y
 	rm -f -- "$tmp"
 end
 
+if test -z "$WAYLAND_DISPLAY"; and test (tty) = "/dev/tty1"
+    exec start-hyprland
+end
+
 # overwrite greeting
 # potentially disabling fastfetch
 #function fish_greeting
