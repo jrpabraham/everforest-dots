@@ -8,8 +8,8 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: 'JetBrainsMono Nerd Font';
-  font-size: 14px;
+  font-family: 'Terminess Nerd Font Mono';
+  font-size: 16px;
 }
 
 .modules-left {
@@ -32,10 +32,16 @@
 }
 
 #cpu,
-#battery,
 #pulseaudio {
   min-width: 12px;
   margin: 0 7.5px;
+  font-size: 24px;
+}
+
+#battery {
+  min-width: 12px;
+  margin: 0 7.5px;
+  font-size: 18px;
 }
 
 #tray {
@@ -43,11 +49,13 @@
 }
 
 #bluetooth {
-  margin-right: 17px;
+  margin-right: 14px;
+  font-size: 18px;
 }
 
 #network {
-  margin-right: 13px;
+  margin-right: 8px;
+  font-size: 24px;
 }
 
 #custom-expand-icon {
