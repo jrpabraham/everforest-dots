@@ -1,4 +1,5 @@
-@import "../omarchy/current/theme/waybar.css";
+@define-color foreground #d3c6aa;
+@define-color background #2d353b;
 
 * {
   background-color: @background;
@@ -8,7 +9,7 @@
   border-radius: 0;
   min-height: 0;
   font-family: 'JetBrainsMono Nerd Font';
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .modules-left {
@@ -32,9 +33,7 @@
 
 #cpu,
 #battery,
-#pulseaudio,
-#custom-omarchy,
-#custom-update {
+#pulseaudio {
   min-width: 12px;
   margin: 0 7.5px;
 }
@@ -59,10 +58,6 @@ tooltip {
   padding: 2px;
 }
 
-#custom-update {
-  font-size: 10px;
-}
-
 #clock {
   margin-left: 8.75px;
 }
@@ -71,7 +66,6 @@ tooltip {
   opacity: 0;
 }
 
-#custom-screenrecording-indicator,
 #custom-idle-indicator,
 #custom-notification-silencing-indicator {
   min-width: 12px;
@@ -81,20 +75,7 @@ tooltip {
   padding-bottom: 1px;
 }
 
-#custom-screenrecording-indicator.active {
-  color: #a55555;
-}
-
 #custom-idle-indicator.active,
 #custom-notification-silencing-indicator.active {
-  color: #a55555;
-}
-
-#custom-voxtype {
-  min-width: 12px;
-  margin: 0 0 0 7.5px;
-}
-
-#custom-voxtype.recording {
   color: #a55555;
 }
