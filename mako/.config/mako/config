@@ -49,3 +49,20 @@ default-timeout=5000
 border-color=#e67e80
 background-color=#2d333b
 default-timeout=0
+
+# Volume OSD
+[app-name=Volume]
+anchor=center
+width=400
+height=600
+margin=0
+padding=8
+border-size=2
+border-radius=0
+progress-color=#a7c080
+background-color=#272e33
+text-color=#d3c6aa
+border-color=#272e33
+format=
+default-timeout=1000
+ignore-timeout=0
