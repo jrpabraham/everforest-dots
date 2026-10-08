@@ -1,0 +1,51 @@
+# Everforest Hard — Mako
+# ~/.config/mako/config
+
+font=Terminess Nerd Font Regular 12
+
+# Position / dimensions
+anchor=top-right
+width=360
+height=120
+margin=12
+padding=12
+border-size=2
+border-radius=0
+
+# Colors
+background-color=#272e33
+text-color=#d3c6aa
+border-color=#a7c080
+
+# Default notification
+default-timeout=5000
+ignore-timeout=0
+
+# Grouping
+group-by=app-name
+
+# Icons
+icons=1
+max-icon-size=48
+
+# Text
+#format=<b>%s</b>\n%b
+
+# Actions
+on-button-left=dismiss
+on-button-right=dismiss-all
+on-touch=dismiss
+
+# Urgency
+[urgency=low]
+border-color=#7fbbb3
+default-timeout=3000
+
+[urgency=normal]
+border-color=#a7c080
+default-timeout=5000
+
+[urgency=critical]
+border-color=#e67e80
+background-color=#2d333b
+default-timeout=0

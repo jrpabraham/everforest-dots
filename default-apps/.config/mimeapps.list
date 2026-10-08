@@ -1,5 +1,5 @@
 [Default Applications]
-application/x-zerosize=mmicro.desktop
+application/x-zerosize=micro.desktop
 text/css=micro.desktop
 application/octet-stream=micro.desktop
 application/epub+zip=com.github.johnfactotum.Foliate.desktop
@@ -11,10 +11,11 @@ text/csv=libreoffice-calc.desktop
 text/x-csv=libreoffice-calc.desktop
 application/csv=libreoffice-calc.desktop
 application/vnd.ms-excel=libreoffice-calc.desktop
-#application/pdf=org.pwmt.zathura.desktop
+application/pdf=helium.desktop
+x-scheme-handler/mailto=helium.desktop
 
 [Added Associations]
-application/x-zerosize=micro.deskto
+application/x-zerosize=micro.desktop
 text/css=micro.desktop
 application/octet-stream=micro.desktop
 text/plain=micro.desktop
