@@ -4,7 +4,7 @@
 
 hl.on("hyprland.start", function () 
    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
-   hl.exec_cmd("~/.config/hypr/clamshell.sh")
+  -- hl.exec_cmd("~/.config/hypr/clamshell.sh")
    hl.exec_cmd("waybar & hyprpaper & hypridle & hyprsunset & mako")
  end)
 
@@ -13,16 +13,43 @@ hl.on("hyprland.start", function ()
 --------------
 
 hl.monitor({
-    output   = "",
+    output   = "eDP-1",
+    mode     = "preferred",
+    position = "auto",
+    scale    = "auto",
+    mirror   = "HDMI-A-1",
+})
+
+hl.monitor({
+    output   = "HDMI-A-1",
     mode     = "preferred",
     position = "auto",
     scale    = "auto",
 })
 
--- Clamshell mode --
+-- Disable suspend when mirroring --
 
-hl.bind("switch:on:[Lid Switch]", hl.dsp.exec_cmd("~/.config/hypr/clamshell.sh close"), { locked = true })
-hl.bind("switch:off:[Lid Switch]", hl.dsp.exec_cmd("~/.config/hypr/clamshell.sh open"), { locked = true })
+--hl.bind("switch:on:[Lid Switch]", hl.dsp.exec_cmd("~/.config/hypr/clamshell.sh close"), { locked = true })
+--hl.bind("switch:off:[Lid Switch]", hl.dsp.exec_cmd("~/.config/hypr/clamshell.sh open"), { locked = true })
+
+local inhibited = false
+local function update_inhibit()
+	local hdmi = false
+	for _, m in ipairs(hl.get_monitors()) do
+		if m.name:find("HDMI-A-1") then hdmi = true end
+	end
+
+	if hdmi and not inhibited then
+		hl.exec_cmd('systemd-inhibit --what=idle:sleep:handle-lid-switch --who=hyprland  --why=hdmi-no-sleep --mode=block sleep infinity')
+		inhibited = true
+	elseif not hdmi and inhibited then
+		hl.exec_cmd('pkill -f "[h]dmi-no-sleep"')
+		inhibited = false
+	end
+end
+
+hl.on("hyprland.start", update_inhibit)
+hl.on("monitor.layout_changed", update_inhibit)
 
 -----------------
 -- Environment --
