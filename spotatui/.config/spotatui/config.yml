@@ -1,0 +1,21 @@
+27;2;13~behavior:
+  enable_global_song_count: true
+
+theme:
+    preset: "Custom"
+    active: "167, 192, 128" # Green — current playing song
+    banner: "131, 192, 146" # Aqua green — spotatui banner
+    error_border: "230, 126, 128" # Red
+    error_text: "230, 126, 128"
+    hint: "219, 188, 127" # Yellow
+    hovered: "214, 153, 182" # Purple-pink
+    inactive: "133, 146, 137" # Muted grey
+    playbar_background: "45, 53, 59" # Darker panel
+    playbar_progress: "167, 192, 128" # Green progress
+    playbar_progress_text: "39, 46, 51" # Dark text on progress
+    playbar_text: "211, 198, 170" # Warm foreground
+    selected: "127, 187, 179" # Blue-aqua selection
+    text: "211, 198, 170" # Warm parchment
+    header: "230, 220, 200" # Light warm header
+    background: "39, 46, 51" # Everforest Dark Hard background
+    highlighted_lyrics: "167, 192, 128" # Green lyrics highlight
