@@ -1,0 +1,10 @@
+[opener]
+calc = [
+    { run = 'libreoffice --calc "$@"', desc = "LibreOffice Calc", block = true }
+]
+
+[open]
+prepend_rules = [
+    { mime = "text/csv", use = "calc" },
+    { name = "*.csv", use = "calc" }
+]

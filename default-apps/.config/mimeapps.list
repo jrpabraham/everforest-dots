@@ -1,7 +1,7 @@
 [Default Applications]
 application/x-zerosize=micro.desktop
+text/plain=micro.desktop
 text/css=micro.desktop
-application/octet-stream=micro.desktop
 application/epub+zip=com.github.johnfactotum.Foliate.desktop
 application/x-mobipocket-ebook=com.github.johnfactotum.Foliate.desktop
 application/x-fictionbook+xml=com.github.johnfactotum.Foliate.desktop
@@ -17,9 +17,6 @@ x-scheme-handler/mailto=helium.desktop
 [Added Associations]
 application/x-zerosize=micro.desktop
 text/css=micro.desktop
-application/octet-stream=micro.desktop
-text/plain=micro.desktop
-text/csv=micro.desktop
 application/pdf=org.mozilla.firefox.desktop
 application/pdf=libreoffice-draw.desktop
 text/html=micro.desktop
