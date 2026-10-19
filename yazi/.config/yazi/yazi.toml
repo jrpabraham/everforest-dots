@@ -1,6 +1,6 @@
 [opener]
 calc = [
-    { run = 'libreoffice --calc "$@"', desc = "LibreOffice Calc", block = true }
+    { run = 'libreoffice --calc "$s"', desc = "LibreOffice Calc", block = true }
 ]
 
 [open]
