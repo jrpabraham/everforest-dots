@@ -47,10 +47,8 @@
 }
 
 window#waybar {
-    background-color: @bg;
+    background: transparent;
     color: @fg;
-    transition-property: background-color;
-    transition-duration: .5s;
 }
 
 window#waybar > box {

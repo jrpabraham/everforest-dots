@@ -78,6 +78,7 @@ hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/fuzzel/power-menu.sh"
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("xdg-terminal-exec yazi"))
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.kill())
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
