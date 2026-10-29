@@ -1,6 +1,11 @@
 @define-color foreground #d3c6aa;
 @define-color background #2d353b;
 @define-color green #A7C080;
+@define-color yellow #DBBC7F;
+@define-color orange #E69875;
+@define-color red #E67E80;
+@define-color purple #D699B6;
+@define-color blue #7FBBB3;
 
 /************/
 /* Sections */
@@ -98,13 +103,27 @@
   transition: color 0.2s ease;
 }
 
-#bluetooth:hover,
-#network:hover,
-#pulseaudio:hover,
-#cpu:hover,
-#battery:hover,
 #idle_inhibitor:hover {
-  color: @green;
+  color: @yellow;
+}
+
+#battery:hover {
+    color: @green;
+}
+
+#bluetooth:hover {
+    color: @blue;
+}
+#network:hover {
+    color: @purple;
+}
+
+#pulseaudio:hover {
+    color: @red;
+}
+
+#cpu:hover {
+    color: @orange;
 }
 
 #custom-expand-icon {
