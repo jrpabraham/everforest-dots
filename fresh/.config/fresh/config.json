@@ -1,0 +1,6 @@
+{
+  "theme": "everforest.json",
+  "file_explorer": {
+    "auto_open_on_last_buffer_close": false
+  }
+}
