@@ -82,11 +82,19 @@
   font-size: 24px;
 }
 
+
+#idle_inhibitor {
+  min-width: 12px;
+  margin: 0 7.5px;
+  font-size: 18px;
+}
+
 #bluetooth,
 #network,
 #puleaudio,
 #cpu,
-#battery {
+#battery,
+#idle_inhibitor {
   transition: color 0.2s ease;
 }
 
@@ -94,7 +102,8 @@
 #network:hover,
 #pulseaudio:hover,
 #cpu:hover,
-#battery:hover {
+#battery:hover,
+#idle_inhibitor:hover {
   color: @green;
 }
 
