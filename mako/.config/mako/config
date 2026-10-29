@@ -4,18 +4,18 @@
 font=Terminess Nerd Font Regular 12
 
 # Position / dimensions
-anchor=top-right
+anchor=bottom-right
 width=360
 height=120
-margin=12
+margin=0
 padding=12
-border-size=2
-border-radius=0
+border-size=1
+border-radius=8
 
 # Colors
 background-color=#272e33
 text-color=#d3c6aa
-border-color=#a7c080
+border-color=#d3c6aa
 
 # Default notification
 default-timeout=5000
@@ -52,17 +52,12 @@ default-timeout=0
 
 # Volume OSD
 [app-name=Volume]
-anchor=center
-width=256
-height=2048
-margin=0
-padding=8
-border-size=2
-border-radius=0
-progress-color=#a7c080
-background-color=#272e33
-text-color=#d3c6aa
-border-color=#272e33
-format=
-default-timeout=1000
-ignore-timeout=0
+format=<b></b>
+background-color=#2d353b
+text-color=#2d353b
+border-color=#a7c080
+progress-color=over #a7c080
+border-size=1
+border-radius=8
+padding=10
+default-timeout=1500
