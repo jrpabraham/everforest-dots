@@ -52,11 +52,25 @@ default-timeout=0
 
 # Volume OSD
 [app-name=Volume]
+anchor=center
 format=<b></b>
 background-color=#2d353b
 text-color=#2d353b
-border-color=#a7c080
-progress-color=over #a7c080
+border-color=#7fbbb3
+progress-color=over #7fbbb3
+border-size=1
+border-radius=8
+padding=10
+default-timeout=1500
+
+# Brightness OSD
+[app-name=Brightness]
+anchor=center
+format=<b>󰃞</b>
+background-color=#2d353b
+text-color=#2d353b
+border-color=#dbbc7f
+progress-color=over #dbbc7f
 border-size=1
 border-radius=8
 padding=10
