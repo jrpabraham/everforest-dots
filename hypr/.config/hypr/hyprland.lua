@@ -173,7 +173,7 @@ hl.config({
   general = {
   	gaps_in = 4,
   	gaps_out = 8,
-  	border_size = 2,
+  	border_size = 1,
   	["col.active_border"] = "rgba(a7c080ee)",
   	["col.inactive_border"] = "rgba(272e33aa)",
   	resize_on_border = true,

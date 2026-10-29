@@ -1,5 +1,10 @@
 @define-color foreground #d3c6aa;
 @define-color background #2d353b;
+@define-color green #A7C080;
+
+/************/
+/* Sections */
+/************/
 
 * {
   background-color: transparent;
@@ -18,15 +23,17 @@
 
 .modules-right {
   background: @background;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0 4px 0 12px;
   margin-top: 8px;
   margin-right: 8px;
 }
 
+/* Workspaces */
+
 #workspaces {
   background: @background;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0;
   margin-top: 8px;
 }
@@ -41,6 +48,12 @@
 #workspaces button.empty {
   opacity: 0.5;
 }
+
+/***********/
+/* Modules */
+/***********/
+
+/* System tray */
 
 #cpu,
 #pulseaudio {
@@ -69,6 +82,22 @@
   font-size: 24px;
 }
 
+#bluetooth,
+#network,
+#puleaudio,
+#cpu,
+#battery {
+  transition: color 0.2s ease;
+}
+
+#bluetooth:hover,
+#network:hover,
+#pulseaudio:hover,
+#cpu:hover,
+#battery:hover {
+  color: @green;
+}
+
 #custom-expand-icon {
   margin-right: 18px;
 }
@@ -81,11 +110,19 @@ tooltip {
   padding: 5px 8px;
 }
 
+/* Dateclock */
+
 #clock {
   background: @background;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0 16px;
   margin-top: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#clock:hover {
+	background-color: @green;
+	color: @background;
 }
 
 .hidden {
