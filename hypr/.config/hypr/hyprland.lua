@@ -4,13 +4,14 @@
 
 hl.on("hyprland.start", function () 
    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
-  -- hl.exec_cmd("~/.config/hypr/clamshell.sh")
    hl.exec_cmd("waybar & hyprpaper & hypridle & hyprsunset & mako")
  end)
 
 --------------
 -- Monitors --
 --------------
+
+-- Set to always mirror external display
 
 hl.monitor({
     output   = "eDP-1",
@@ -27,30 +28,6 @@ hl.monitor({
     scale    = "auto",
 })
 
--- Disable suspend when mirroring --
-
---hl.bind("switch:on:[Lid Switch]", hl.dsp.exec_cmd("~/.config/hypr/clamshell.sh close"), { locked = true })
---hl.bind("switch:off:[Lid Switch]", hl.dsp.exec_cmd("~/.config/hypr/clamshell.sh open"), { locked = true })
-
-local inhibited = false
-local function update_inhibit()
-	local hdmi = false
-	for _, m in ipairs(hl.get_monitors()) do
-		if m.name:find("HDMI-A-1") then hdmi = true end
-	end
-
-	if hdmi and not inhibited then
-		hl.exec_cmd('systemd-inhibit --what=idle:sleep:handle-lid-switch --who=hyprland  --why=hdmi-no-sleep --mode=block sleep infinity')
-		inhibited = true
-	elseif not hdmi and inhibited then
-		hl.exec_cmd('pkill -f "[h]dmi-no-sleep"')
-		inhibited = false
-	end
-end
-
-hl.on("hyprland.start", update_inhibit)
-hl.on("monitor.layout_changed", update_inhibit)
-
 -----------------
 -- Environment --
 -----------------
@@ -66,6 +43,7 @@ local terminal = "ghostty"
 local fileManager = "nautilus"
 local menu = "fuzzel"
 local browser = "helium-browser"
+
 -----------------
 -- Keybindings --
 -----------------
@@ -93,20 +71,20 @@ hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
-hl.bind(mainMod .. " + H",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + J",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + K",  hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mainMod .. " + H",  hl.dsp.focus({ direction = "left" }))
+-- hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+-- hl.bind(mainMod .. " + J",    hl.dsp.focus({ direction = "up" }))
+-- hl.bind(mainMod .. " + K",  hl.dsp.focus({ direction = "down" }))
 
 hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.swap({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.swap({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.swap({ direction = "down" }))
 
-hl.bind(mainMod .. " + SHIFT + H",  hl.dsp.window.swap({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + J",    hl.dsp.window.swap({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + K",  hl.dsp.window.swap({ direction = "down" }))
+-- mainMod .. " + SHIFT + H",  hl.dsp.window.swap({ direction = "left" }))
+-- mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
+-- mainMod .. " + SHIFT + J",    hl.dsp.window.swap({ direction = "up" }))
+-- mainMod .. " + SHIFT + K",  hl.dsp.window.swap({ direction = "down" }))
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
@@ -181,24 +159,34 @@ hl.gesture({
 
 hl.config({
   general = {
-  	gaps_in = 4,
-  	gaps_out = 8,
-  	border_size = 1,
-  	["col.active_border"] = "rgba(a7c080ee)",
-  	["col.inactive_border"] = "rgba(272e33aa)",
-  	resize_on_border = true,
-  	hover_icon_on_border = true,
+    gaps_in = 4,
+    gaps_out = 8,
+    border_size = 1,
+    ["col.active_border"] = "rgba(a7c080ee)",
+    ["col.inactive_border"] = "rgba(272e33aa)",
+    resize_on_border = true,
+    hover_icon_on_border = true,
     layout = "dwindle",
   },
-
+  decoration = {
+    rounding = 8,
+    rounding_power = 2,
+  },
   dwindle = {
     preserve_split = true,
   },
+  misc = {
+    force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+    disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
+    },
 })
 
-hl.bind("SUPER + J", hl.dsp.layout("togglesplit"))
+local suppressMaximizeRule = hl.window_rule({
+    name  = "suppress-maximize-events",
+    match = { class = ".*" },
 
-----------------
--- Appearance --
-----------------
+    suppress_event = "maximize",
+})
+
+-- suppressMaximizeRule:set_enabled(false)
 

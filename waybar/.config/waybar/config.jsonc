@@ -15,6 +15,7 @@
     "battery"
   ],
   "hyprland/workspaces": {
+    "all-outputs": true,
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
