@@ -1,5 +1,9 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
+function fish_greeting
+   fastfetch -l small -s os:kernel:wm:theme:shell:host:display:cpu:gpu:memory:disk 
+end
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
