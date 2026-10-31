@@ -95,15 +95,15 @@ end
 -- Multimedia keys for volume
 
 hl.bind("XF86AudioRaiseVolume",
-    hl.dsp.exec_cmd("~/.config/hypr/volume-notify.sh up"),
+    hl.dsp.exec_cmd("~/.config/hypr/scripts/volume-notify.sh up"),
     { locked = true, repeating = true })
 
 hl.bind("XF86AudioLowerVolume",
-    hl.dsp.exec_cmd("~/.config/hypr/volume-notify.sh down"),
+    hl.dsp.exec_cmd("~/.config/hypr/scripts/volume-notify.sh down"),
     { locked = true, repeating = true })
 
 hl.bind("XF86AudioMute",
-    hl.dsp.exec_cmd("~/.config/hypr/volume-notify.sh mute"),
+    hl.dsp.exec_cmd("~/.config/hypr/scripts/volume-notify.sh mute"),
     { locked = true, repeating = true })
 
 hl.bind("XF86AudioMicMute",
@@ -113,11 +113,11 @@ hl.bind("XF86AudioMicMute",
 -- Multimedia keys for brightness
 
 hl.bind("XF86MonBrightnessUp",
-    hl.dsp.exec_cmd("~/.config/hypr/brightness-notify.sh up"),
+    hl.dsp.exec_cmd("~/.config/hypr/scripts/brightness-notify.sh up"),
     { locked = true, repeating = true })
     
 hl.bind("XF86MonBrightnessDown",
-    hl.dsp.exec_cmd("~/.config/hypr/brightness-notify.sh down"),
+    hl.dsp.exec_cmd("~/.config/hypr/scripts/brightness-notify.sh down"),
     { locked = true, repeating = true })
 
 -- Multimedia keys for playback
