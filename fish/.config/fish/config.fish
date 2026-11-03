@@ -23,6 +23,7 @@ alias t='tmux attach || tmux new -s Work'
 
 set -Ux EDITOR micro
 set -Ux VISUAL micro
+set -Ux OLLAMA_NOHISTORY 1
 
 zoxide init fish | source
 
@@ -34,12 +35,6 @@ function y
 	end
 	rm -f -- "$tmp"
 end
-
-# overwrite greeting
-# potentially disabling fastfetch
-#function fish_greeting
-#    # smth smth
-#end
 
 function conda
     source ~/miniconda3/etc/fish/conf.d/conda.fish
