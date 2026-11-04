@@ -7,7 +7,7 @@ sel=$(fd --hidden --follow \
         --exclude .local/share/Trash --exclude .local/share/flatpak \
         . "$HOME" 2>/dev/null \
       | sed "s|^$HOME/|~/|" \
-      | fuzzel --dmenu --prompt " " --width 50) || exit 0
+      | fuzzel --dmenu  --prompt " " --placeholder="Search files" --hide-before-typing --lines 10 --width 60) || exit 0
 
 [ -z "$sel" ] && exit 0
 xdg-open "${sel/#\~/$HOME}"
