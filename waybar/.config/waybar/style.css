@@ -61,7 +61,7 @@
 /* System tray */
 
 #cpu,
-#pulseaudio {
+#custom-wallpaper {
   min-width: 12px;
   margin: 0 7.5px;
   font-size: 24px;
@@ -96,7 +96,7 @@
 
 #bluetooth,
 #network,
-#puleaudio,
+#custom-wallpaper,
 #cpu,
 #battery,
 #idle_inhibitor {
@@ -118,7 +118,7 @@
     color: @purple;
 }
 
-#pulseaudio:hover {
+#custom-wallpaper:hover {
     color: @red;
 }
 

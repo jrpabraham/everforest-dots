@@ -9,7 +9,7 @@
   "modules-right": [
     "bluetooth",
     "network",
-    "pulseaudio",
+    "custom/wallpaper",
     "cpu",
     "idle_inhibitor",
     "battery"
@@ -115,6 +115,13 @@
       "children-class": "tray-group-item"
     },
     "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/wallpaper": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Wallpaper",
+    "on-click": "~/.config/fuzzel/wallpapers.sh",
+//     "on-click-right": "~/.local/bin/wallpaper-random"
   },
   "custom/expand-icon": {
     "format": "",
