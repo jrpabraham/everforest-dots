@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 
 selected=$(
@@ -26,3 +24,5 @@ awww img \
     --transition-type random \
     --transition-duration 1 \
     "$WALLPAPER_DIR/$selected"
+    
+ln -sf "$WALLPAPER_DIR/$selected" "$HOME/.cache/current-wallpaper"
