@@ -191,3 +191,11 @@ local suppressMaximizeRule = hl.window_rule({
 
 -- suppressMaximizeRule:set_enabled(false)
 
+-- Misc. Appearance and Behavior --
+
+hl.config({
+  cursor = {
+    hide_on_key_press = true,
+  },
+})
+

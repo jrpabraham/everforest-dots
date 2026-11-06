@@ -6,5 +6,6 @@ calc = [
 [open]
 prepend_rules = [
     { mime = "text/csv", use = "calc" },
-    { name = "*.csv", use = "calc" }
+    { name = "*.csv", use = "calc" },
+    { mime = "inode/x-empty",    use = "edit" }
 ]
