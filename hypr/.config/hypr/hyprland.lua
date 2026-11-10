@@ -4,7 +4,8 @@
 
 hl.on("hyprland.start", function () 
    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
-   hl.exec_cmd("waybar & awww-daemon & hypridle & hyprsunset & mako")
+   hl.exec_cmd("mako & waybar & awww-daemon & hypridle & hyprsunset")
+--    hl.exec_cmd("sleep 10 && waybar -l debug > /tmp/waybar-boot.log 2>&1")
  end)
 
 --------------
