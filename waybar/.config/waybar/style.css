@@ -1,5 +1,5 @@
-@define-color foreground #d3c6aa;
-@define-color background #2d353b;
+@define-color foreground #D3C6AA;
+@define-color background #272E33;
 @define-color green #A7C080;
 @define-color yellow #DBBC7F;
 @define-color orange #E69875;
@@ -30,7 +30,6 @@
 .modules-right {
   background: @background;
   border-radius: 8px;
-  padding: 0 4px 0 12px;
   margin-top: 8px;
   margin-right: 8px;
 }
@@ -55,113 +54,9 @@
   opacity: 0.5;
 }
 
-/***********/
-/* Modules */
-/***********/
-
-/* System tray */
-
-#cpu,
-#custom-wallpaper {
-  min-width: 12px;
-  margin: 0 7.5px;
-  font-size: 24px;
-}
-
-#battery {
-  min-width: 12px;
-  margin: 0 7.5px;
-  font-size: 16px;
-}
-
-#tray {
-  margin-right: 16px;
-}
-
-#bluetooth {
-  margin-right: 14px;
-  font-size: 18px;
-}
-
-#network {
-  margin-right: 8px;
-  font-size: 24px;
-}
-
-
-#idle_inhibitor {
-  min-width: 12px;
-  margin: 0 7.5px;
-  font-size: 20px;
-}
-
-#bluetooth,
-#network,
-#custom-wallpaper,
-#cpu,
-#battery,
-#idle_inhibitor {
-  transition: color 0.2s ease;
-}
-
-#idle_inhibitor:hover {
-  color: @yellow;
-}
-
-#battery:hover {
-    color: @green;
-}
-
-#bluetooth:hover {
-    color: @blue;
-}
-#network:hover {
-    color: @purple;
-}
-
-#custom-wallpaper:hover {
-    color: @aqua;
-}
-
-#cpu:hover {
-    color: @red;
-}
-
-#mpris:hover {
-    color: @orange;
-}
-
-#custom-expand-icon {
-  margin-right: 18px;
-}
-
-tooltip {
-  background: @background;
-  color: @foreground;
-  border: 1px solid @foreground;
-  border-radius: 10px;
-  padding: 5px 8px;
-}
-
-/* Player (MPRIS) */
-
-#mpris {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    margin: 0;
-    padding: 0 10px 0 0;
-}
-
-#mpris.paused,
-#mpris.stopped {
-    font-size: 22px;
-    padding: 0 14px 0 0;
-}
-
-
-
+/*************/
 /* Dateclock */
+/*************/
 
 #clock {
   background: @background;
@@ -174,6 +69,127 @@ tooltip {
 #clock:hover {
 	background-color: @green;
 	color: @background;
+}
+
+/***********/
+/* Modules */
+/***********/
+
+/* MPRIS (Player) */
+
+#mpris {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#mpris.paused,
+#mpris.stopped {
+    font-size: 22px;
+}
+
+#mpris:hover {
+    color: @orange;
+}
+
+/* Bluetooth */
+
+#bluetooth {
+  font-size: 18px;
+}
+
+#bluetooth.connected {
+    font-size: 20px;
+}
+
+#bluetooth:hover {
+    color: @blue;
+}
+
+/* Network */
+
+#network {
+  font-size: 24px;
+}
+
+#network:hover {
+    color: @purple;
+}
+
+/* Wallpapers */
+
+#custom-wallpaper {
+  font-size: 24px;
+}
+
+#custom-wallpaper:hover {
+    color: @aqua;
+}
+
+/* CPU */
+
+#cpu {
+  font-size: 24px;
+}
+
+#cpu:hover {
+    color: @red;
+}
+
+/* Idle Inhibitor */
+
+#idle_inhibitor {
+  font-size: 20px;
+}
+
+#idle_inhibitor:hover {
+  color: @yellow;
+}
+
+/* Battery */
+
+#battery {
+  font-size: 16px;
+}
+
+#battery.charging {
+    font-size: 24px;
+}
+
+#battery:hover {
+    color: @green;
+}
+
+/* All Modules */
+
+#mpris,
+#bluetooth,
+#network,
+#custom-wallpaper,
+#cpu,
+#battery,
+#idle_inhibitor {
+  margin: 0;
+  padding: 0 8px;
+  transition: color 0.2s ease;
+}
+
+/***********/
+/* Tooltip */
+/***********/
+
+tooltip {
+  background: @background;
+  color: @foreground;
+  border: 1px solid @foreground;
+  border-radius: 10px;
+  padding: 5px 8px;
+}
+
+/* Etc */
+
+#custom-expand-icon {
+  margin-right: 18px;
 }
 
 .hidden {

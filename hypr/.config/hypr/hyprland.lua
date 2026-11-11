@@ -29,6 +29,12 @@ hl.monitor({
     scale    = "auto",
 })
 
+-- Move all workspaces to primary display
+
+for i = 1, 10 do
+    hl.workspace_rule({ workspace = tostring(i), monitor = "HDMI-A-1" })
+end
+
 -----------------
 -- Environment --
 -----------------
@@ -74,20 +80,10 @@ hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
--- hl.bind(mainMod .. " + H",  hl.dsp.focus({ direction = "left" }))
--- hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
--- hl.bind(mainMod .. " + J",    hl.dsp.focus({ direction = "up" }))
--- hl.bind(mainMod .. " + K",  hl.dsp.focus({ direction = "down" }))
-
 hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.swap({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.swap({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.swap({ direction = "down" }))
-
--- mainMod .. " + SHIFT + H",  hl.dsp.window.swap({ direction = "left" }))
--- mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
--- mainMod .. " + SHIFT + J",    hl.dsp.window.swap({ direction = "up" }))
--- mainMod .. " + SHIFT + K",  hl.dsp.window.swap({ direction = "down" }))
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
