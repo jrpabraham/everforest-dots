@@ -6,6 +6,7 @@
 @define-color red #E67E80;
 @define-color purple #D699B6;
 @define-color blue #7FBBB3;
+@define-color aqua #83C092;
 
 /************/
 /* Sections */
@@ -119,10 +120,14 @@
 }
 
 #custom-wallpaper:hover {
-    color: @red;
+    color: @aqua;
 }
 
 #cpu:hover {
+    color: @red;
+}
+
+#mpris:hover {
     color: @orange;
 }
 
@@ -133,10 +138,28 @@
 tooltip {
   background: @background;
   color: @foreground;
-  border: 1px solid @island-hover;
+  border: 1px solid @foreground;
   border-radius: 10px;
   padding: 5px 8px;
 }
+
+/* Player (MPRIS) */
+
+#mpris {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0 10px 0 0;
+}
+
+#mpris.paused,
+#mpris.stopped {
+    font-size: 22px;
+    padding: 0 14px 0 0;
+}
+
+
 
 /* Dateclock */
 

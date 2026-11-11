@@ -8,6 +8,7 @@
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
+    "mpris",
     "bluetooth",
     "network",
     "custom/wallpaper",
@@ -99,6 +100,18 @@
       "default": ["", "", ""]
     }
   },
+  "mpris": {
+    "format": "{status_icon} {dynamic}",
+    "format-paused": "{status_icon}",
+    "format-stopped": "",
+    "status-icons": {
+        "playing": "",
+        "paused": "",
+        "stopped": ""
+    },        
+    "on-click": "playerctl play-pause",
+    "max-length": 40
+  },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -121,8 +134,7 @@
     "format": "",
     "tooltip": true,
     "tooltip-format": "Wallpaper",
-    "on-click": "~/.config/fuzzel/wallpapers.sh",
-//     "on-click-right": "~/.local/bin/wallpaper-random"
+    "on-click": "~/.config/fuzzel/wallpapers.sh"
   },
   "custom/expand-icon": {
     "format": "",

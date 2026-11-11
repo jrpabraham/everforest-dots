@@ -4,9 +4,8 @@
 
 hl.on("hyprland.start", function () 
    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
-   hl.exec_cmd("sleep 1 && waybar && pkill -SIGUSR2 waybar")
    hl.exec_cmd("mako & awww-daemon & hypridle & wlsunset -l 37.88 -L -121.91 -t 4800 -T 6500 -d 60")
---    hl.exec_cmd("sleep 10 && waybar -l debug > /tmp/waybar-boot.log 2>&1")
+   hl.exec_cmd("sleep 2 && waybar")
  end)
 
 --------------
@@ -197,6 +196,7 @@ local suppressMaximizeRule = hl.window_rule({
 
 hl.config({
   cursor = {
+    default_monitor = "HDMI-A-1",
     hide_on_key_press = true,
   },
 })
