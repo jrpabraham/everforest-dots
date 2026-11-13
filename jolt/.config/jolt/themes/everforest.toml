@@ -1,0 +1,17 @@
+name = "everforest"
+
+[dark]
+bg = "#272e33"
+dialog_bg = "#2e383c"
+fg = "#d3c6aa"
+accent = "#a7c080"
+accent_secondary = "#d699b6"
+highlight = "#dbbc7f"
+muted = "#859289"
+success = "#a7c080"
+warning = "#e69875"
+danger = "#e67e80"
+border = "#495156"
+selection_bg = "#a7c080"
+selection_fg = "#272e33"
+graph_line = "#7fbbb3"
