@@ -20,7 +20,7 @@ selected=$(
 
 awww img \
     --all \
-    --resize crop \
+    --resize stretch \
     --transition-type random \
     --transition-duration 1 \
     "$WALLPAPER_DIR/$selected"

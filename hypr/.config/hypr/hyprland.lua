@@ -66,12 +66,13 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("xdg-terminal-exec fresh"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("xdg-terminal-exec yazi"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("xdg-terminal-exec spotatui"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprshot -m region -o 'Pictures'"))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.kill())
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({"fullscreen"}))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + U", hl.dsp.window.pseudo())
 
 hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))
 

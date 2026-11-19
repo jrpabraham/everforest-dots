@@ -506,6 +506,14 @@ export type WorkspaceSummary = {
 	/** Backend kind for a remote workspace (`ssh`, `docker`, …), absent for
 	*  a local one. */
 	backend?: string;
+	/** For a `"pending"` row, how its create stands: `"creating"` while it
+	*  runs, `"error"` once it has failed (with the reason in `message`), or
+	*  `"paused"` for one restored from a previous run and not resumed yet.
+	*  The dock's retry / dismiss apply to the last two. Absent otherwise. */
+	pending?: {
+		phase: "creating" | "error" | "paused";
+		message: string;
+	};
 };
 export type ArchivedWorkspace = {
 	/** Current path of the archived worktree. This is the identity
@@ -685,6 +693,14 @@ export type OrchestratorApi = DiscoveryHost & {
 	setDockView(view: "card" | "compact"): void;
 	/** Set any of the dock's filter controls. See `DockFilterOptions`. */
 	setDockFilter(options?: DockFilterOptions): void;
+	/** Claude and Codex sessions open outside this editor that no workspace
+	*  here stands for — the dock's external group, without its search. */
+	listExternalSessions(): LiveSession[];
+	/** Open one of `listExternalSessions()` by its `key`, as its dock row's
+	*  Open does: attach or take it over in a workspace, open a cloud
+	*  session's page, or start teleporting it (the checkout is asked for).
+	*  Resolves `false` when no session has that key. */
+	openExternalSession(key: string): Promise<boolean>;
 };
 declare global {
 	interface FreshPluginRegistry {

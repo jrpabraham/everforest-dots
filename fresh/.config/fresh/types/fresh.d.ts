@@ -433,6 +433,19 @@ type ScreenSize = {
 	height: number;
 };
 /**
+* The latest release's notes. Returned by `editor.releaseNotes()`.
+*/
+type ReleaseNotes = {
+	/**
+	* The release's version, e.g. `"0.5.8"`.
+	*/
+	version: string;
+	/**
+	* One short plain-text line per change, features first.
+	*/
+	items: Array<string>;
+};
+/**
 * Payload delivered to a plugin's `editor.getNextKey()` Promise when
 * the next keypress arrives in the editor's input dispatch.
 *
@@ -1406,7 +1419,9 @@ type CreateWindowWithTerminalOptions = {
 	label: string;
 	/**
 	* Working directory for the spawned terminal. Defaults to
-	* `root` when omitted.
+	* `root` when omitted. It must be a folder that exists on this
+	* computer: when it is not, the call is rejected with a message
+	* naming it, and no window is created.
 	*/
 	cwd?: string;
 	/**
@@ -4101,8 +4116,9 @@ interface EditorConfig {
 		*/
 		show_tilde?: boolean;
 		/**
-		* Use Nerd Font icons in the UI (e.g. settings category icons). Only turn on
-		* if your terminal uses a Nerd Font, or icons show as `?` or boxes. Default: false
+		* Use Nerd Font icons in the UI (e.g. settings category icons, and the
+		* `chrome.nerd_font` glyphs a theme provides). Only turn on if your
+		* terminal uses a Nerd Font, or icons show as `?` or boxes. Default: false
 		*
 		* Default: `false`
 		*/
@@ -5150,7 +5166,7 @@ interface SidebarConfig {
 interface StatusBarConfig {
 		/**
 		* Elements on the left side of the status bar.
-		* Default: ["{trust}", "{remote}", "{terminal_restart}", "{cursor}", "{diagnostics}", "{cursor_count}", "{messages}"]
+		* Default: ["{trust}", "{remote}", "{terminal_restart}", "{cursor}", "{diagnostics}", "{cursor_count}", "{search_nav}", "{messages}"]
 		*/
 		left?: StatusBarElement[];
 		/**
@@ -5281,6 +5297,13 @@ interface EditorAPI {
 	* the editor supports the features they need.
 	*/
 	apiVersion(): number;
+	/**
+	* The latest release's notes — its version and one short line per
+	* change — compiled in from the changelog when the editor was built.
+	* `null` for a build made without the changelog. The welcome screen
+	* lists them as "What's new".
+	*/
+	releaseNotes(): ReleaseNotes | null;
 	/**
 	* The name of the plugin this `editor` handle belongs to. Used by the
 	* M3 plugin-API plane (`exportPluginApi` tags the exporter). Plugin
@@ -6265,6 +6288,31 @@ interface EditorAPI {
 		description?: string;
 	}): string[];
 	/**
+	* Declare a map config field: named entries, each a small record of
+	* typed fields (e.g. a command and its arguments per language).
+	* 
+	* `value` names each entry's fields and their types — `"string"`,
+	* `"string[]"`, `"boolean"`, `"integer"` or `"number"`, or
+	* `{ type, description }` to describe one. `displayField` picks the
+	* field a row shows next to its key. The Settings UI renders the map
+	* with a row per entry and an add/edit dialog holding the fields, in
+	* the order `value` declares them, each field's `description` shown
+	* as its help.
+	* 
+	* Throws if an option is unknown, a field type is not one of those, or
+	* `default` is not a map of entries whose fields match `value`.
+	* Returns the current value (user-set if present, otherwise `default`).
+	*/
+	defineConfigMap(name: string, options: {
+		default: Record<string, Record<string, unknown>>;
+		value: Record<string, "string" | "string[]" | "boolean" | "integer" | "number" | {
+			type: "string" | "string[]" | "boolean" | "integer" | "number";
+			description?: string;
+		}>;
+		displayField?: string;
+		description?: string;
+	}): Record<string, Record<string, unknown>>;
+	/**
 	* Get the calling plugin's settings as a JS object.
 	* 
 	* Returns the merged value at `config.plugins.<plugin_name>.settings`.
@@ -6403,6 +6451,25 @@ interface EditorAPI {
 	*/
 	applyTheme(themeName: string): boolean;
 	/**
+	* Render the whole editor with a theme that has not been saved.
+	* 
+	* `json` is a theme file's contents. It is loaded the way a theme file
+	* is — `extends`, fallbacks, the `chrome` options — and becomes the
+	* running theme, without touching disk or config. The next
+	* `applyTheme` (or `reloadAndApplyTheme`) replaces it. Invalid JSON
+	* leaves the running theme as it was and reports why in the status bar.
+	* 
+	* @param json - The theme, as theme-file JSON
+	*/
+	previewTheme(json: string): boolean;
+	/**
+	* End the live preview `previewTheme` began: the theme that was running
+	* before it comes back, exactly as it was — no name is looked up and
+	* config is not touched. Does nothing when no preview is running, or
+	* after `applyTheme` has chosen a theme since.
+	*/
+	endThemePreview(): boolean;
+	/**
 	* Override theme colors in-memory for the running session. `overrides`
 	* is a JS object mapping `"section.field"` keys (same namespace as
 	* `getThemeSchema`) to `[r, g, b]` triplets (0–255 each).
@@ -6444,6 +6511,13 @@ interface EditorAPI {
 	* Get theme data (JSON) by name from the in-memory cache
 	*/
 	getThemeData(name: string): unknown;
+	/**
+	* The built-in file-type icons a theme's `file_icons` section
+	* overrides, in that section's shape: `{by_name, by_extension, default,
+	* folder, folder_open}`, each icon `{glyph, color: [r, g, b]}` (a
+	* folder's color is `null`: it takes `ui.file_explorer_directory_fg`).
+	*/
+	getBuiltinFileIcons(): unknown;
 	/**
 	* Save a theme file to the user themes directory, returns the saved path
 	*/
@@ -8099,7 +8173,10 @@ interface EditorAPI {
 	* focus; `arg` unused — the width is the editor's), "dock_width"
 	* (`arg` = width in columns; sticks like a drag, across resizes and
 	* launches), "center", "focus", "blur", "fullscreen" (`arg != 0` makes
-	* a centered panel cover the whole frame over the dock), "sidebar"
+	* a centered panel cover the whole frame over the dock), "fill" (`arg != 0`
+	* makes a centered panel `heightPct` tall instead of as tall as its
+	* rows, so a list or tree with `visibleRows` omitted has a height to
+	* fill — in a box that hugs its rows it draws nothing), "sidebar"
 	* (`arg` = requested rows; re-anchors the panel as a sidebar section
 	* under the file explorer — "dock" / "center" re-anchor it back out),
 	* "sidebar_rows" (`arg` = requested rows for a section; a divider the
@@ -8148,7 +8225,9 @@ interface EditorAPI {
 	* Intended for plugin internals that must run host-side work
 	* (e.g. `devcontainer up`) before installing an authority that
 	* would otherwise route the spawn elsewhere. Same calling shape
-	* as `spawnProcess`.
+	* as `spawnProcess`. With no `cwd`, it runs in the active window's
+	* folder — or, when that folder no longer exists, in the folder
+	* the editor itself was started in.
 	*/
 	spawnHostProcess(command: string, args: string[], cwd?: string): ProcessHandle<SpawnResult>;
 	/**
@@ -9383,6 +9462,15 @@ interface EditorAPI {
 	* The result names each panel's buffer (`panels`) and split
 	* (`panelSplits`, for `createScrollSyncGroup`, `setLineWrap` and
 	* `setLayoutHints`). Group ids are per window.
+	*
+	* `options.inTabOf` names the buffer whose tab the pane is on: the
+	* group is shown in that tab, instead of in a tab of its own. The tab
+	* stays the file's tab in every way (its name, its unsaved mark, closing
+	* it, its place in the tab bar); only what it shows changes. The group
+	* lives as long as the tab does, and when it closes the tab shows the
+	* file again. For any other buffer, the group gets a tab of its own.
 	*/
-	createBufferGroup(name: string, mode: string, layout: unknown): Promise<BufferGroupResult>;
+	createBufferGroup(name: string, mode: string, layout: unknown, options?: {
+		inTabOf?: number;
+	}): Promise<BufferGroupResult>;
 }
