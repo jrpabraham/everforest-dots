@@ -4,6 +4,7 @@
 font=Terminess Nerd Font Regular 12
 
 # Position / dimensions
+layer=overlay
 anchor=bottom-right
 width=360
 height=120
