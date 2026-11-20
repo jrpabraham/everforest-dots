@@ -1,0 +1,10 @@
+@theme "./everforest.rasi"
+
+configuration {
+    font: "Terminess Nerd Font Mono 18px";
+    show-icons: true;
+    matching: "fuzzy";
+    sort: true;
+    sorting-method: "fzf";
+    drun-display-format: "{name}";
+}

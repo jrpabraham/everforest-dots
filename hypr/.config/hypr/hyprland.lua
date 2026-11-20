@@ -58,7 +58,7 @@ local browser = "helium-browser"
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("~/.config/rofi/menu.sh"))
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/fuzzel/power-menu.sh"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("~/.config/fuzzel/file-search.sh"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
