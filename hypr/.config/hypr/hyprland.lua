@@ -48,7 +48,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 
 local terminal = "ghostty"
 local fileManager = "nautilus"
-local menu = "fuzzel"
+-- local menu = "fuzzel"
 local browser = "helium-browser"
 
 -----------------
@@ -59,8 +59,8 @@ local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("~/.config/rofi/menu.sh"))
-hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/fuzzel/power-menu.sh"))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("~/.config/fuzzel/file-search.sh"))
+-- hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/fuzzel/power-menu.sh"))
+-- hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("~/.config/fuzzel/file-search.sh"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("xdg-terminal-exec fresh"))
