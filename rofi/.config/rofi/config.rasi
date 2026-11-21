@@ -1,10 +1,54 @@
 @theme "./everforest.rasi"
 
 configuration {
-    font: "Terminess Nerd Font Mono 18px";
+    font: "Terminess Nerd Font Mono 16px";
     show-icons: true;
     matching: "fuzzy";
     sort: true;
     sorting-method: "fzf";
     drun-display-format: "{name}";
+}
+
+window {
+    width: 20ch;
+    border: 1px;
+    border-radius: 8px;
+    padding: 18px 18px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 8px;
+}
+
+inputbar {
+    children: [ entry, num-filtered-rows ];
+    spacing: 8px;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+entry {
+    placeholder: "Search...";
+}
+
+num-filtered-rows {
+}
+
+listview {
+    lines: 15;
+    columns: 1;
+    scrollbar: false;
+    fixed-height: false;
+    spacing: 2px;
+}
+
+element {
+    padding: 2px;
+    spacing: 4px;
+    border-radius: 8px;
+}
+
+element-icon {
+    size: 1.2em;
 }

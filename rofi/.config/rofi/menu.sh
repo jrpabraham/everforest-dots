@@ -10,9 +10,9 @@ files() {
   setsid xdg-open "${sel/#\~/$HOME}" >/dev/null 2>&1 &
 }
 
-power() {
+system() {
   choice=$(printf ' Lock\n󰤄 Suspend\n󰑙 Reboot\n Shutdown' \
-           | rofi -dmenu -i -no-custom -p "Power" -theme-str 'window {width: 24ch;} inputbar {enabled: false;} listview {lines: 4;}') || return 1
+           | rofi -dmenu -i -no-custom -p "System" -theme-str 'window {width: 24ch;} inputbar {enabled: false;} listview {lines: 4;}') || return 1
   case $choice in
     *Lock)     exec hyprlock ;;
     *Suspend)  exec systemctl suspend ;;
@@ -23,12 +23,12 @@ power() {
 }
 
 while true; do
-  choice=$(printf '1/ Apps\n2/ Files\n3/ Power\n' \
+  choice=$(printf '1 - Apps\n2 - Files\n3 - System\n' \
            | rofi -dmenu -i -no-custom -p "Menu" \
                   -theme-str 'inputbar {enabled: false;} listview {lines: 3;}') || exit 0
   case $choice in
-    *Apps)  rofi -show drun -show-icons && exit 0 ;;
+    *Apps)  rofi -show drun -show-icons -theme-str 'entry {placeholder: "Run...";}  window {width: 48ch;}' && exit 0 ;;
     *Files) files && exit 0 ;;
-    *Power) power && exit 0 ;;
+    *System) system && exit 0 ;;
   esac
 done
